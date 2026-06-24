@@ -1,0 +1,131 @@
+<Window x:Class="DriveUniverse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:DriveUniverse.Controls"
+        xmlns:views="clr-namespace:DriveUniverse.Views"
+        Title="DriveUniverse" Height="640" Width="420"
+        Icon="/DriveUniverse;component/Assets/app_icon.png"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ShowInTaskbar="True" ResizeMode="NoResize"
+        MinWidth="380" MinHeight="560">
+    <Border x:Name="Chrome" CornerRadius="18" BorderThickness="1.5" BorderBrush="#FF1A2138" MouseLeftButtonDown="Chrome_Drag">
+        <Grid>
+            <!-- deep space background (IsHitTestVisible=False so it NEVER eats clicks) -->
+            <Border CornerRadius="18" ClipToBounds="True" IsHitTestVisible="False">
+                <Grid>
+                    <Image Source="/DriveUniverse;component/Assets/space_bg.png"
+                           Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality" Opacity="0.35"/>
+                    <Rectangle>
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#EA050810" Offset="0"/>
+                                <GradientStop Color="#F003060C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </Border>
+
+            <!-- starfield (already IsHitTestVisible=False in code) -->
+            <ctrl:Starfield x:Name="Stars" IsHitTestVisible="False"/>
+
+            <!-- DEV VIEW (full-window) -->
+            <views:DevView x:Name="ViewDev" Visibility="Collapsed"/>
+
+            <!-- compact main layout -->
+            <Grid x:Name="MainPane">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- TOP BAR: mascot + title + controls -->
+                <Border Grid.Row="0" CornerRadius="18,18,0,0" Padding="18,14,14,8">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#CC050810" Offset="0"/>
+                            <GradientStop Color="#0003080C" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- mascot (clickable — toggles the floating Orbit widget) -->
+                        <Grid Grid.Column="0" VerticalAlignment="Center" Cursor="Hand" ToolTip="Click to toggle floating Orbit widget">
+                            <Grid.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{x:Null}"/>
+                            </Grid.InputBindings>
+                            <ctrl:MascotView x:Name="Mascot" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                            <!-- transparent overlay to catch the click -->
+                            <Border Background="Transparent" MouseLeftButtonDown="Mascot_Click"/>
+                        </Grid>
+
+                        <!-- glowing logo title -->
+                        <ctrl:LogoTitle Grid.Column="1" VerticalAlignment="Center"/>
+
+                        <!-- window controls -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Button x:Name="BtnDevToggle" Style="{StaticResource GhostButton}" Content="⌘" Width="34" Height="30" Padding="0" Click="DevToggle_Click" ToolTip="Developer console" FontSize="14"/>
+                            <Button x:Name="BtnMinimize" Style="{StaticResource GhostButton}" Content="▼" Width="34" Height="30" Padding="0" Margin="5,0,0,0" Click="Minimize_Click" ToolTip="Minimize to tray" FontSize="12"/>
+                            <Button x:Name="BtnClose" Content="✕" Width="34" Height="30" Margin="5,0,0,0" Click="Close_Click" ToolTip="Exit" FontSize="14" Cursor="Hand" Foreground="#FF7B88A8">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="bd" CornerRadius="8" Background="Transparent">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="bd" Property="Background" Value="#CCFF7088"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- CONTENT AREA (ClipToBounds so square views don't poke through rounded corners) -->
+                <Grid Grid.Row="1" ClipToBounds="True" Margin="0">
+                    <views:SleekView x:Name="ViewDrive"/>
+                    <views:ProcessesView x:Name="ViewProc" Visibility="Collapsed"/>
+                    <views:RulesView x:Name="ViewRules" Visibility="Collapsed"/>
+                    <views:AppsView x:Name="ViewApps" Visibility="Collapsed"/>
+                    <views:VoiceView x:Name="ViewVoice" Visibility="Collapsed"/>
+                    <views:SettingsView x:Name="ViewSet" Visibility="Collapsed"/>
+
+                    <!-- toast caption -->
+                    <TextBlock x:Name="Toast" FontSize="13" FontWeight="Bold" Foreground="#FF45E7F7"
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,12"
+                               Opacity="0" IsHitTestVisible="False">
+                        <TextBlock.Effect><DropShadowEffect Color="#FF45E7F7" BlurRadius="10" ShadowDepth="0"/></TextBlock.Effect>
+                    </TextBlock>
+
+                    <!-- voice confirm sheet -->
+                    <ctrl:VoiceConfirmSheet x:Name="VoiceSheet" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0"/>
+                </Grid>
+
+                <!-- BOTTOM NAV BAR -->
+                <Border Grid.Row="2" CornerRadius="0,0,18,18" Padding="6,4" Background="#CC03060C">
+                    <UniformGrid Columns="6" Rows="1">
+                        <Button x:Name="NavDrive"  Style="{StaticResource NavButton}" Content="◉" Click="Nav_Click" Tag="drive" ToolTip="Drive"/>
+                        <Button x:Name="NavProc"   Style="{StaticResource NavButton}" Content="≡" Click="Nav_Click" Tag="proc"  ToolTip="Processes"/>
+                        <Button x:Name="NavRules"  Style="{StaticResource NavButton}" Content="◷" Click="Nav_Click" Tag="rules" ToolTip="Rules"/>
+                        <Button x:Name="NavApps"   Style="{StaticResource NavButton}" Content="⊞" Click="Nav_Click" Tag="apps"  ToolTip="Apps"/>
+                        <Button x:Name="NavVoice"  Style="{StaticResource NavButton}" Content="✦" Click="Nav_Click" Tag="voice" ToolTip="Voice"/>
+                        <Button x:Name="NavSet"    Style="{StaticResource NavButton}" Content="⚙" Click="Nav_Click" Tag="set"   ToolTip="Settings"/>
+                    </UniformGrid>
+                </Border>
+            </Grid>
+
+            <!-- warp overlay (top-most) -->
+            <ctrl:WarpOverlay x:Name="Warp"/>
+        </Grid>
+    </Border>
+</Window>

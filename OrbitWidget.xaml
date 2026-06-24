@@ -1,0 +1,92 @@
+<Window x:Class="DriveUniverse.OrbitWidget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:DriveUniverse.Controls"
+        Title="OrbitWidget" Width="200" Height="260"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ShowInTaskbar="False" Topmost="True" ResizeMode="NoResize">
+    <Grid x:Name="Root">
+        <!-- HIT AREA -->
+        <Border x:Name="HitArea" Background="Transparent" MouseLeftButtonDown="HitArea_MouseLeftButtonDown"/>
+
+        <!-- HOVER RADIAL MENU -->
+        <Canvas x:Name="RadialMenu" Opacity="0" IsHitTestVisible="True" Panel.ZIndex="5"/>
+
+        <!-- CENTER: glow ring + black circle + animation layer + Orbit -->
+        <Grid Width="110" Height="110" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Panel.ZIndex="10" IsHitTestVisible="False">
+            <!-- glow ring -->
+            <Ellipse x:Name="GlowRing" Width="106" Height="106" StrokeThickness="3" Opacity="0.5" Margin="-2">
+                <Ellipse.Stroke>
+                    <RadialGradientBrush>
+                        <GradientStop x:Name="RingColor" Color="#0045E7F7" Offset="0.8"/>
+                        <GradientStop x:Name="RingOuter" Color="#6645E7F7" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Stroke>
+            </Ellipse>
+
+            <!-- inner black circle -->
+            <Ellipse x:Name="InnerCircle" Width="88" Height="88" Fill="#EE06090F"/>
+
+            <!-- MINI FX CANVAS (plays warp/eject animation inside the circle) -->
+            <Canvas x:Name="FxCanvas" Width="88" Height="88" ClipToBounds="True"/>
+
+            <!-- Orbit mascot (fades out during animation) -->
+            <ctrl:MascotView x:Name="Mascot" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- QUICK ACTION BUTTONS -->
+        <StackPanel x:Name="QuickActions" Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="0,0,0,10" Panel.ZIndex="15">
+            <Button x:Name="BtnQuickEject" Content="⏏" Width="36" Height="36" Click="QuickEject_Click"
+                    ToolTip="Eject drive" Cursor="Hand" Margin="0,0,6,0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="10" Width="36" Height="36" Background="#DD0D121F" BorderBrush="#5545E7F7" BorderThickness="1.2">
+                            <Border.Effect><DropShadowEffect Color="#3345E7F7" BlurRadius="6" ShadowDepth="0"/></Border.Effect>
+                            <TextBlock Text="⏏" FontSize="14" Foreground="#FF45E7F7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#FF141B2E"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF45E7F7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="BtnQuickCycle" Content="⚡" Width="36" Height="36" Click="QuickCycle_Click"
+                    ToolTip="Mount / power-cycle drive" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="10" Width="36" Height="36" Background="#DD0D121F" BorderBrush="#558E70FF" BorderThickness="1.2">
+                            <Border.Effect><DropShadowEffect Color="#338E70FF" BlurRadius="6" ShadowDepth="0"/></Border.Effect>
+                            <TextBlock Text="⚡" FontSize="14" Foreground="#FF8E70FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#FF141B2E"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF8E70FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <!-- COMMAND TEXT -->
+        <Border x:Name="CommandBox" CornerRadius="10" Padding="14,6"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,56"
+                Opacity="0" IsHitTestVisible="False" MinWidth="80" Panel.ZIndex="20">
+            <Border.Background>
+                <SolidColorBrush Color="#E80D121F"/>
+            </Border.Background>
+            <Border x:Name="CmdBorder" BorderThickness="1" CornerRadius="10">
+                <Border.BorderBrush>
+                    <SolidColorBrush x:Name="CmdBorderBrush" Color="#5545E7F7"/>
+                </Border.BorderBrush>
+                <TextBlock x:Name="CommandText" Text="" FontSize="11" FontWeight="SemiBold"
+                           Foreground="#FFF4F7FF" HorizontalAlignment="Center" Padding="4,2"/>
+            </Border>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+<UserControl x:Class="DriveUniverse.Views.DevView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#FF06090F">
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="#FF0E1320" Padding="14,10">
+            <DockPanel LastChildFill="True">
+                <Button x:Name="BtnExit" Style="{StaticResource GhostButton}" Content="← Back to DriveUniverse" DockPanel.Dock="Right" Padding="14,6" Click="Exit_Click"/>
+                <TextBlock Text="DriveUniverse  •  dev console" Foreground="#FF5B6C8C" FontFamily="Consolas" FontSize="12" VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom" Background="#FF0E1320" Padding="10,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="Cmd" Background="Transparent" BorderThickness="0" Foreground="#FFB9C6E0" FontFamily="Consolas" FontSize="12.5" Padding="4,2" KeyDown="Cmd_KeyDown"/>
+                <TextBlock Text="enter 'help'" Foreground="#FF3A4763" FontFamily="Consolas" FontSize="11" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            </Grid>
+        </Border>
+        <ScrollViewer x:Name="Scroller" Background="#FF06090F">
+            <TextBox x:Name="Output" FontFamily="Consolas" FontSize="12.5" Background="Transparent" BorderThickness="0"
+                     Foreground="#FF8AE0A8" IsReadOnly="True" TextWrapping="Wrap" Padding="12"/>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

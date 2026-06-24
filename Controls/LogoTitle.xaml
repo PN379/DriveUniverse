@@ -1,0 +1,20 @@
+<UserControl x:Class="DriveUniverse.Controls.LogoTitle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             IsHitTestVisible="False">
+    <StackPanel>
+        <TextBlock x:Name="Title" Text="DriveUniverse" FontSize="17" FontWeight="Bold" FontFamily="Segoe UI Semibold">
+            <TextBlock.Effect>
+                <DropShadowEffect x:Name="Glow" Color="#FF45E7F7" BlurRadius="12" ShadowDepth="0" Opacity="0.7"/>
+            </TextBlock.Effect>
+            <TextBlock.Foreground>
+                <LinearGradientBrush x:Name="Grad" StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop x:Name="GS1" Color="#FF5BEAF8" Offset="0"/>
+                    <GradientStop x:Name="GS2" Color="#FF8E70FF" Offset="0.6"/>
+                    <GradientStop x:Name="GS3" Color="#FFFDC55E" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock Text="orbit your disks" FontSize="9.5" Foreground="#FF5B6C8C" Margin="1,0,0,0" Opacity="0.8"/>
+    </StackPanel>
+</UserControl>

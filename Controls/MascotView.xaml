@@ -1,0 +1,130 @@
+<UserControl x:Class="DriveUniverse.Controls.MascotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Viewbox Width="52" Height="52">
+        <Canvas Width="140" Height="140" ClipToBounds="False">
+            <!-- outer glow halo -->
+            <Ellipse x:Name="Halo" Width="120" Height="120" Canvas.Left="10" Canvas.Top="10"
+                     Opacity="0.35" IsHitTestVisible="False">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop x:Name="HaloCore" Color="#8845E7F7" Offset="0"/>
+                        <GradientStop Color="#0045E7F7" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <!-- orbit ring (tilted, spinning) -->
+            <Grid x:Name="RingGroup" Canvas.Left="20" Canvas.Top="50" Width="100" Height="44" IsHitTestVisible="False">
+                <Grid.RenderTransform>
+                    <RotateTransform x:Name="RingRot" Angle="-18" CenterX="50" CenterY="22"/>
+                </Grid.RenderTransform>
+                <!-- back half of ring (behind planet) -->
+                <Path x:Name="RingBack" Data="M 2,22 A 48,20 0 0 1 98,22" Stroke="#3358ED9D" StrokeThickness="3" Opacity="0.5"/>
+                <!-- orbiting satellite dot -->
+                <Ellipse x:Name="Satellite" Width="8" Height="8" Canvas.Left="2" Canvas.Top="18">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFFDC55E" Offset="0"/>
+                            <GradientStop Color="#99FDC55E" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Effect>
+                        <DropShadowEffect Color="#FFFDC55E" BlurRadius="8" ShadowDepth="0" Opacity="0.8"/>
+                    </Ellipse.Effect>
+                </Ellipse>
+            </Grid>
+
+            <!-- planet body -->
+            <Grid x:Name="Body" Canvas.Left="30" Canvas.Top="30" Width="80" Height="80" IsHitTestVisible="False">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="Breath" ScaleX="1" ScaleY="1" CenterX="40" CenterY="40"/>
+                        <TranslateTransform x:Name="Lift" Y="0"/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+
+                <!-- planet sphere with warm gradient (matching the image) -->
+                <Ellipse Width="76" Height="76" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.35,0.3" Center="0.42,0.38">
+                            <GradientStop Color="#FF6BEAF8" Offset="0"/>
+                            <GradientStop Color="#FF35A0D8" Offset="0.35"/>
+                            <GradientStop Color="#FF1E5FA8" Offset="0.65"/>
+                            <GradientStop Color="#FF0E2848" Offset="0.92"/>
+                            <GradientStop Color="#FF081830" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Effect>
+                        <DropShadowEffect Color="#6645E7F7" BlurRadius="16" ShadowDepth="0" Opacity="0.5"/>
+                    </Ellipse.Effect>
+                </Ellipse>
+
+                <!-- warm glow accent (top-right, orange like the image) -->
+                <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,4,0" Opacity="0.25">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFFDC55E" Offset="0"/>
+                            <GradientStop Color="#00FDC55E" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <!-- eyes -->
+                <StackPanel x:Name="Eyes" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
+                    <!-- left eye -->
+                    <Grid Width="16" Height="16" Margin="0,0,6,0">
+                        <Ellipse Width="11" Height="12" Fill="#FFF4F7FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Ellipse.RenderTransform>
+                                <ScaleTransform x:Name="EyeLScale" ScaleX="1" ScaleY="1" CenterX="5.5" CenterY="6"/>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                        <Ellipse x:Name="PupilL" Width="5" Height="5" Fill="#FF0A1A2E" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <!-- right eye -->
+                    <Grid Width="16" Height="16" Margin="6,0,0,0">
+                        <Ellipse Width="11" Height="12" Fill="#FFF4F7FF" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Ellipse.RenderTransform>
+                                <ScaleTransform x:Name="EyeRScale" ScaleX="1" ScaleY="1" CenterX="5.5" CenterY="6"/>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                        <Ellipse x:Name="PupilR" Width="5" Height="5" Fill="#FF0A1A2E" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- cheek blush (warm, charming) -->
+                <Ellipse Width="7" Height="4" Fill="#33FDC55E" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="14,0,0,2"/>
+                <Ellipse Width="7" Height="4" Fill="#33FDC55E" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,14,2"/>
+
+                <!-- smile -->
+                <Path x:Name="Smile" Data="M 24,42 Q 38,52 52,42" Stroke="#FFF4F7FF" StrokeThickness="2.5"
+                      StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="0.9"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,2,0,0"/>
+
+                <!-- specular highlight -->
+                <Ellipse Width="18" Height="13" Fill="#44FFFFFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,12,0,0">
+                    <Ellipse.RenderTransform>
+                        <SkewTransform AngleX="-20"/>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Grid>
+
+            <!-- front half of ring (in front of planet) -->
+            <Path x:Name="RingFront" Data="M 22,72 A 48,20 0 0 0 118,72" Stroke="#8858ED9D" StrokeThickness="3" Opacity="0.7" IsHitTestVisible="False"/>
+
+            <!-- listening indicator (appears above planet) -->
+            <Border x:Name="ListenDot" Width="12" Height="12" CornerRadius="6"
+                    Canvas.Left="96" Canvas.Top="22" Opacity="0" IsHitTestVisible="False">
+                <Border.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FF58ED9D" Offset="0"/>
+                        <GradientStop Color="#0058ED9D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Color="#FF58ED9D" BlurRadius="10" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+        </Canvas>
+    </Viewbox>
+</UserControl>

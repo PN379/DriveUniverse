@@ -1,0 +1,92 @@
+<UserControl x:Class="DriveUniverse.Views.SleekView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DriveUniverse.Controls"
+             Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="Transparent">
+        <StackPanel Margin="18,10,18,14">
+
+            <!-- drive picker -->
+            <DockPanel LastChildFill="True">
+                <Button x:Name="BtnRefresh" Style="{StaticResource GhostButton}" Content="↻" Width="36" Height="34" Padding="0" DockPanel.Dock="Right" Click="Refresh_Click"/>
+                <TextBlock Text="Target" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource LabelMuted}" Margin="2,0,8,0"/>
+                <ComboBox x:Name="DriveCombo" Padding="10,7" SelectionChanged="DriveCombo_Changed"/>
+            </DockPanel>
+
+            <!-- status card -->
+            <Border Style="{StaticResource GlassCard}" Margin="0,10,0,0" Padding="16,12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Ellipse x:Name="StatusOrb" Grid.Column="0" Width="40" Height="40" Margin="0,0,14,0">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop x:Name="OrbCore" Color="#FF58ED9D" Offset="0.3"/>
+                                <GradientStop Color="#0058ED9D" Offset="1"/>
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                        <Ellipse.Effect>
+                            <DropShadowEffect Color="#FF58ED9D" BlurRadius="18" ShadowDepth="0" Opacity="0.5"/>
+                        </Ellipse.Effect>
+                    </Ellipse>
+
+                    <!-- activity radar -->
+                    <ctrl:ActivityRadar x:Name="Activity" Grid.Column="0" Margin="0,0,14,0"/>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="StatusName" Text="—" Style="{StaticResource LabelBright}"/>
+                        <TextBlock x:Name="StatusDetail" Text="Select a drive" Style="{StaticResource LabelMuted}" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- action buttons -->
+            <UniformGrid Columns="2" Rows="0" Margin="0,10,0,0">
+                <Button x:Name="BtnEject"     Style="{StaticResource PrimaryButton}" Content="⏏  Eject"         Margin="0,0,5,5" Click="Eject_Click"/>
+                <Button x:Name="BtnPower"    Style="{StaticResource PrimaryButton}" Content="⚡  Power-cycle"  Margin="5,0,0,5" Click="Power_Click"/>
+                <Button x:Name="BtnRoutine"  Style="{StaticResource GhostButton}"   Content="✦  Full Routine" Margin="0,0,5,5" Click="Routine_Click"/>
+                <Button x:Name="BtnBlockers" Style="{StaticResource GhostButton}"   Content="!?  Blockers"     Margin="5,0,0,5" Click="Blockers_Click"/>
+            </UniformGrid>
+
+            <!-- cycles/delay (compact) -->
+            <DockPanel Margin="0,6,0,0">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <TextBlock Text="Cycles" Style="{StaticResource TinyLabel}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox x:Name="CyclesCombo" Width="44"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <TextBlock Text="Delay" Style="{StaticResource TinyLabel}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox x:Name="DelayCombo" Width="60"/>
+                </StackPanel>
+            </DockPanel>
+
+            <!-- QUICK APPS strip (launch linked tools right from home) -->
+            <TextBlock Text="QUICK LAUNCH" Style="{StaticResource TinyLabel}" Margin="0,14,0,6"/>
+            <ItemsControl x:Name="QuickApps">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource GhostButton}" Padding="10,7" Margin="0,0,6,6" Click="QuickApp_Click" Tag="{Binding}">
+                            <StackPanel>
+                                <Image Source="{Binding AppIcon}" Width="28" Height="28" HorizontalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="{Binding Name}" FontSize="9" HorizontalAlignment="Center" Margin="0,3,0,0" Foreground="{StaticResource TextNormal}"
+                                           TextTrimming="CharacterEllipsis" MaxWidth="64"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock x:Name="Hint" Text="Tip: pick an ejected drive (⚠) → Power-cycle to bring it back."
+                       Style="{StaticResource LabelMuted}" Margin="0,6,0,0" TextWrapping="Wrap" FontSize="11"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

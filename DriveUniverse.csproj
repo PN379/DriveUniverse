@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>DriveUniverse</AssemblyName>
+    <RootNamespace>DriveUniverse</RootNamespace>
+    <Version>1.0.0-beta</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Company>PN379</Company>
+    <Authors>PN379</Authors>
+    <Product>DriveUniverse</Product>
+    <Title>DriveUniverse</Title>
+    <Copyright>Copyright (c) 2026 PN379. All rights reserved.</Copyright>
+    <Description>Orbit your drives — eject, power-cycle, automate, and command by voice.</Description>
+    <PackageProjectUrl>https://github.com/PN379/DriveUniverse</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PN379/DriveUniverse</RepositoryUrl>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="System.Speech" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\*.png" />
+    <Resource Include="Assets\*.wav" />
+  </ItemGroup>
+
+  <!-- Single-file settings only apply during 'dotnet publish' (see publish-single.bat) -->
+  <PropertyGroup Condition="'$(PublishSingleFile)' == 'true'">
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,67 @@
+<UserControl x:Class="DriveUniverse.Views.AppsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DriveUniverse.Views"
+             Background="Transparent">
+    <UserControl.Resources>
+        <local:NullToVisibilityConverter x:Key="NullToVis"/>
+        <local:NotNullToVisibilityConverter x:Key="NotNullToVis"/>
+    </UserControl.Resources>
+    <Grid Margin="18,10,18,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="APPS" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextBright}"/>
+            <TextBlock Text="  /  link your tools" FontSize="12" Foreground="{StaticResource TextMuted}" VerticalAlignment="Bottom" Margin="0,0,0,4"/>
+        </StackPanel>
+        <Button x:Name="BtnAdd" Grid.Row="1" Style="{StaticResource PrimaryButton}" Content="+  Add application" HorizontalAlignment="Left" Padding="14,8" Margin="0,12,0,0" Click="Add_Click"/>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="List" ItemsSource="{Binding}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource GlassCard}" Margin="0,0,0,8" Padding="14,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!-- icon container -->
+                                    <Border Grid.Column="0" Width="40" Height="40" CornerRadius="10" Background="#18FFFFFF" Margin="0,0,12,0">
+                                        <Grid>
+                                            <Image Source="{Binding AppIcon}" Width="32" Height="32"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Stretch="Uniform"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Visibility="{Binding AppIcon, Converter={StaticResource NotNullToVis}}"/>
+                                            <TextBlock Text="{Binding Glyph}" FontSize="22"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Foreground="{StaticResource WarmGlow}"
+                                                       Visibility="{Binding AppIcon, Converter={StaticResource NullToVis}}"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" Foreground="{StaticResource TextBright}" FontWeight="SemiBold" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path}" FontSize="9" Foreground="#555B6C8C" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Button Style="{StaticResource PrimaryButton}" Content="Launch" Padding="12,6" FontSize="11" Click="Launch_Click" Tag="{Binding}"/>
+                                        <Button Style="{StaticResource GhostButton}" Content="✕" Padding="8,6" FontSize="11" Margin="4,0,0,0" Click="Remove_Click" Tag="{Binding}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <TextBlock x:Name="EmptyApps" Text="No apps linked yet. Click + to add tools like Defraggler."
+                       Style="{StaticResource LabelMuted}" FontSize="12"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+        </Grid>
+    </Grid>
+</UserControl>

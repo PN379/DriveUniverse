@@ -1,0 +1,28 @@
+<UserControl x:Class="DriveUniverse.Controls.ActivityRadar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             IsHitTestVisible="False">
+    <Viewbox Width="80" Height="80">
+        <Canvas Width="100" Height="100">
+            <!-- outer ring -->
+            <Ellipse Width="92" Height="92" Canvas.Left="4" Canvas.Top="4"
+                     Stroke="#221A2440" StrokeThickness="1"/>
+            <!-- sweep line (rotating) -->
+            <Line x:Name="Sweep" X1="50" Y1="50" X2="50" Y2="8"
+                  Stroke="#5545E7F7" StrokeThickness="1.5" Opacity="0.5">
+                <Line.RenderTransform>
+                    <RotateTransform x:Name="SweepRot" CenterX="50" CenterY="50" Angle="0"/>
+                </Line.RenderTransform>
+            </Line>
+            <!-- activity arc (read/write, grows with activity) -->
+            <Path x:Name="Arc" Data="" Stroke="#CC45E7F7" StrokeThickness="3" Opacity="0.7">
+                <Path.Effect>
+                    <DropShadowEffect Color="#FF45E7F7" BlurRadius="8" ShadowDepth="0" Opacity="0.5"/>
+                </Path.Effect>
+            </Path>
+            <!-- center label -->
+            <TextBlock x:Name="Label" Text="idle" FontSize="8" Foreground="#FF5B6C8C"
+                       Canvas.Left="36" Canvas.Top="44"/>
+        </Canvas>
+    </Viewbox>
+</UserControl>
