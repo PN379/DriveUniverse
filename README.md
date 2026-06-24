@@ -225,7 +225,7 @@ Key points:
 
 Created by **PN379** ([github.com/PN379](https://github.com/PN379))
 
-> ♥ Found this useful? There's a **"Support DriveUniverse"** button here [![Support me on Ko-fi](https://ko-fi.com)](https://ko-fi.com/firedell)
+> ♥ Found this useful? There's a **"Support DriveUniverse"** button here [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/firedell)
 and in the App Settings.
 
 *This is beta software. Test thoroughly before relying on it for important data. Always back up your drives.*
