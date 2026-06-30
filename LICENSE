@@ -1,92 +1,21 @@
-================================================================================
-                            DriveUniverse License
-================================================================================
+MIT License
 
-Copyright (c) 2026 PN379 (https://github.com/PN379)
-
-All rights reserved unless explicitly stated below.
-
---------------------------------------------------------------------------------
-1. PERMISSION GRANTED
---------------------------------------------------------------------------------
+Copyright (c) 2026 PN379
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to:
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-  - Use, copy, modify, merge, and distribute the Software
-  - Sublicense and/or sell copies of the Software
-  - Use the Software for personal, educational, and commercial purposes
-
-subject to the conditions in Section 2 below.
-
---------------------------------------------------------------------------------
-2. CONDITIONS
---------------------------------------------------------------------------------
-
-1. The above copyright notice and this permission notice shall be included in
-   all copies or substantial portions of the Software.
-
-2. Any modified distribution must clearly indicate that changes were made and
-   the date of modification.
-
-3. The Software, in original or modified form, must not be presented as the
-   official work of PN379 without explicit written consent.
-
---------------------------------------------------------------------------------
-3. NO WARRANTY — "AS IS"
---------------------------------------------------------------------------------
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF:
-
-  - MERCHANTABILITY
-  - FITNESS FOR A PARTICULAR PURPOSE
-  - NON-INFRINGEMENT
-  - QUIET ENJOYMENT
-
-The entire risk as to the quality and performance of the Software is with you.
-
---------------------------------------------------------------------------------
-4. LIMITATION OF LIABILITY — NO RESPONSIBILITY FOR MISUSE
---------------------------------------------------------------------------------
-
-IN NO EVENT SHALL THE AUTHORS, COPYRIGHT HOLDERS, OR CONTRIBUTORS BE LIABLE
-FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE
-OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-The author (PN379) is NOT responsible for:
-  - Data loss, corruption, or damage caused by the Software
-  - Hardware damage or malfunction
-  - Any consequences of using, misusing, or modifying the Software
-  - Any illegal or unethical use of the Software by third parties
-
-USE AT YOUR OWN RISK. Always back up important data before using drive utilities.
-
---------------------------------------------------------------------------------
-5. ACCEPTABLE USE
---------------------------------------------------------------------------------
-
-This Software is intended for legitimate drive management purposes only. The
-author explicitly prohibits the use of this Software for:
-
-  - Circumventing security measures or data protection
-  - Unauthorized access to systems or data
-  - Any activity that violates applicable local, national, or international law
-  - Distribution of malware or malicious tools
-
-The author reserves the right to report abuse and request takedown of any
-derivative works used for prohibited purposes.
-
---------------------------------------------------------------------------------
-6. THIRD-PARTY NOTICES
---------------------------------------------------------------------------------
-
-This Software uses the following libraries:
-  - System.Management (MIT License) — Microsoft Corporation
-  - System.Speech (MIT License) — Microsoft Corporation
-
-All third-party trademarks belong to their respective owners.
-
---------------------------------------------------------------------------------
-================================================================================
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
