@@ -4,9 +4,9 @@
 
 **One place for everything your external drives need.**
 
-Safely eject, reconnect, automate, launch your favorite disk utilities, and control your drives through a beautiful floating widget with optional offline voice commands powered by Windows’ built-in Speech API (SAPI5).
+Safely eject, reconnect, automate, launch your favorite disk utilities, and control your drives from an always-available floating desktop widget with optional, fully offline voice commands powered by Windows’ built-in Speech API (SAPI5).
 
-DriveUniverse is an all-in-one desktop companion for external USB drives. It transforms scattered Windows drive management into one polished experience, combining safe eject, reconnecting, automation, quick-launch tools, and fully offline voice control powered by Windows’ built-in Speech API (SAPI5).
+DriveUniverse brings together the Windows tools and workflows that are normally scattered across Device Manager, disk utilities, and separate applications into one polished, open-source experience. Whether you manage a home server, a media library, or simply use external USB drives every day, DriveUniverse makes drive management faster, easier, and more enjoyable.
 
 ---
 
