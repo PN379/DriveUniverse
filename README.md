@@ -2,9 +2,11 @@
 
 ![DriveUniverse](Assets/screenshot_hero.png)
 
-**Orbit your drives — eject, power-cycle, automate, and command by voice.**
+**One place for everything your external drives need.**
 
-A Windows drive-control utility that turns managing external USB drives (WD My Book, SSDs, flash drives) into something beautiful and effortless. Built with a deep-space aesthetic, an animated mascot, cinematic transitions, and fully offline voice control.
+Safely eject, reconnect, automate, launch your favorite disk utilities, and control your drives through a beautiful floating widget with optional offline voice commands powered by Windows’ built-in Speech API (SAPI5).
+
+DriveUniverse is an all-in-one desktop companion for external USB drives. It transforms scattered Windows drive management into one polished experience, combining safe eject, reconnecting, automation, quick-launch tools, and fully offline voice control powered by Windows’ built-in Speech API (SAPI5).
 
 ---
 
@@ -16,11 +18,9 @@ I built DriveUniverse because I needed it. My media server required reliable dri
 
 Until I discovered how to trick Windows. DriveUniverse is that tool. It serves as a nexus. Link your disk utilities, automate power cycling, and control everything by voice. Say *"Orbit, eject drive"* and it's done. Say *"Orbit, connect drive"* and your hardware spins back up. No menus, no Device Manager, no replugging cables.
 
-I'm a developer who values having full control over software. Honestly, I was hesitant about AI. I believe it can reduce critical thinking and comes with an environmental cost. But I also had a vision I wanted to ship, and translating ideas into a polished product takes time I didn't have. So for the first time, I used an agentic AI to accelerate development. The architecture, the ideas, the design decisions, the dozens of iterations refining every detail; those are mine. The AI was a tool, not a replacement. It still took extensive back-and-forth to get every interaction right.
+The result is something I'm proud of.
 
-The result is something I'm proud of. If you're skeptical about AI-assisted development, I understand. But judge the software, not how it was made. Give it a try.
-
-**Enjoy a software like never before.**
+**“Finally a beautiful nexus for things that were scattered once…”.**
 
 > 💡 **Quick start:** Tap Orbit in the tray window to pop up the floating widget. Say *"Orbit"* when voice is active to get verbal feedback that the system is listening.
 
